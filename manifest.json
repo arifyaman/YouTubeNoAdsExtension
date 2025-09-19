@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "name": "YouTube No-Cookie Redirect",
+  "version": "1.0",
+  "description": "Adds a right-click option to redirect YouTube videos to No-Cookie domain without ads",
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "storage"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+  "icons": {
+    "16": "16.png",
+    "48": "48.png",
+    "128": "128.png"
+  }
+}
