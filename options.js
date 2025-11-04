@@ -15,27 +15,23 @@ function saveOptions() {
   chrome.storage.sync.set({
     redirectUrl: redirectUrl
   }, function() {
-    // Update status to let user know options were saved
     const status = document.getElementById('status');
     status.textContent = 'Options saved.';
     setTimeout(function() {
       status.textContent = '';
     }, 2000);
-    
-    // Update context menu title
-    chrome.runtime.sendMessage({action: "updateContextMenu"});
   });
 }
 
-// Restores select box and checkbox state using the preferences
-// stored in chrome.storage
 function restoreOptions() {
   chrome.storage.sync.get({
-    redirectUrl: 'https://www.youtube-nocookie.com/embed/{videoId}'
+    redirectUrl: 'https://xlipdev.com/ytnc/{videoId}'
   }, function(items) {
     document.getElementById('redirectUrl').value = items.redirectUrl;
   });
 }
 
-document.addEventListener('DOMContentLoaded', restoreOptions);
-document.getElementById('save').addEventListener('click', saveOptions);
+document.addEventListener('DOMContentLoaded', function() {
+  restoreOptions();
+  document.getElementById('save').addEventListener('click', saveOptions);
+});
